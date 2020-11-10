@@ -1,0 +1,43 @@
+<app-header titulo="{{folder}}"></app-header>
+<ion-searchbar style="z-index: 99; position: absolute; margin-top: 18vh; --border-radius: 15px;" animated="true" (ionChange)="buscar($event)" placeholder="Buscar" debounce="500"></ion-searchbar>
+  
+<ion-content [fullscreen]="true">
+  <ion-grid *ngIf="result != null">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item *ngFor="let item of result.data">
+            <ion-thumbnail slot="start">
+              <img [src]="item.album.cover_small">
+            </ion-thumbnail>
+            <ion-label>
+              <h3>{{item.title_short}}</h3>
+              <p>{{item.artist.name}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="search">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item *ngFor="let v of skeleton">
+            <ion-thumbnail slot="start">
+              <ion-skeleton-text animated></ion-skeleton-text>
+            </ion-thumbnail>
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
