@@ -1,0 +1,47 @@
+<app-header titulo="Buscar Artista"></app-header>
+<ion-searchbar style="z-index: 99; position: absolute; margin-top: 18vh; --border-radius: 15px;" animated="true" (ionChange)="buscar($event)" placeholder="Buscar Artista" debounce="500"></ion-searchbar>
+  
+<ion-content>
+    <ion-grid *ngIf="result != null">
+        <ion-row>
+          <ion-col size="12">
+            <ion-card>
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <img [src]="result.picture">
+                    </ion-thumbnail>
+                    <ion-label>
+                        <h2>Nombre: {{result.name}}</h2>
+                        <p>Albumes: {{result.nb_album}}</p>
+                        <p>Fans: {{result.nb_fan}}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+    </ion-grid>   
+    <ion-grid *ngIf="search">
+        <ion-row>
+          <ion-col size="12">
+            <ion-card>
+                <ion-item >
+                    <ion-thumbnail slot="start">
+                      <ion-skeleton-text animated></ion-skeleton-text>
+                    </ion-thumbnail>
+                    <ion-label>
+                      <h3>
+                        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+                      </h3>
+                      <p>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                      </p>
+                      <p>
+                        <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+                      </p>
+                    </ion-label>
+                  </ion-item>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+    </ion-grid>   
+</ion-content>
